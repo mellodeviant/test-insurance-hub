@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insurance Hub · Monarch Agency Solutions — Noir · Sky</title>
+<title>Insurance Hub · Monarch Agency Solutions</title>
 <meta name="description" content="Find the coverage you need — health, life, property and casualty, and business owner options.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap">
 <style>
 :root{
   /* Monarch Insurance Hub palette. Sits alongside the wordmark without copying it:
@@ -207,10 +207,14 @@ a{color:var(--tide)}
   .route__pos{font-size:11.5px}
 }
 
-</style>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap">
-<style>
-/* ==== shared motion + interaction base ==== */
+
+/* ════════ Noir · Sky ════════
+   Folded in 2026-08-28 from themes/_motion.css + _noir.css + n1-sky.css,
+   which is why this reads as three stacked layers: motion and interaction
+   first, then the dark shell, then the highlight colour. Overrides what is
+   above it deliberately — the original tokens are left in place so the
+   diff against insurance-hub.ORIGINAL-2026-08-28.html stays readable. */
+
 /* Shared by every direction: entrance motion, press feedback, and the STRUCTURE
    of the hover states. Each theme file supplies the colors these flood with, via
    --accent / --on-accent / --flood / --on-flood / --shadow-hover.
@@ -360,7 +364,6 @@ a{color:var(--tide)}
   .card:not(.is-active){transform:scale(.9)}
 }
 
-/* ==== direction: Noir · Sky ==== */
 /* @base Noir — the dark shell. Not built on its own; the n*.css files extend it
    and supply the highlight colour. Everything here is hue-neutral so that
    swapping one token set changes the accent and nothing else.
@@ -444,10 +447,6 @@ h1,h2,h3{font-weight:800;letter-spacing:-.035em}
   .arrow{background:rgba(20,28,37,.94);box-shadow:0 3px 14px rgba(0,0,0,.6)}
 }
 
-/* @name Noir · Sky */
-/* @extends _noir.css */
-/* @fonts https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap */
-
 /* The brightest of the three: a saturated cyan-leaning sky blue. Reads as
    energy and daylight against the near-black ground — the most "tech" of the
    set, and the furthest from the muted blue in the mark. */
@@ -462,6 +461,20 @@ h1,h2,h3{font-weight:800;letter-spacing:-.035em}
   --on-flood-soft:rgba(4,20,31,.86);
   --beacon:rgba(125,211,252,.34);
   --glow:rgba(125,211,252,.26);
+}
+
+/* ── phone ──
+   Measured at 390px on 2026-08-28. The arrows were 42x42, under the 44x44 touch
+   minimum, on the one device class where touch is the only input. They float
+   over the stage rather than taking grid columns, so 44 costs no layout.
+
+   The route stops stay 26px wide and that is deliberate: nine of them at 44px
+   need 396px of rail inside a 374px content box. The geometry does not allow it.
+   They are a convenience — the arrows, the card taps and the keyboard arrows all
+   do the same job at full size — so the dots keep their 44px HEIGHT and lose
+   width, rather than the rail overflowing or the count being hidden. */
+@media (max-width:700px){
+  .arrow{width:44px;height:44px}
 }
 </style>
 </head>
@@ -647,7 +660,7 @@ function renderLanding() {
       <div class="cats">${blocks}</div>
       <div class="land__extra">${supp}</div>
     </section>`;
-  document.title = ("Insurance Hub · Monarch Agency Solutions") + " — Noir · Sky";
+  document.title = "Insurance Hub · Monarch Agency Solutions";
   navHub.setAttribute("aria-current", "page");
 }
 
@@ -796,7 +809,7 @@ function renderCategory(category, cardId) {
     select(idx, false);
   }
 
-  document.title = (`${category.label} · Monarch Insurance Hub`) + " — Noir · Sky";
+  document.title = `${category.label} · Monarch Insurance Hub`;
   select(idx, false);
 }
 
